@@ -6,8 +6,8 @@ import random
 import argparse
 
 import numpy as np
-import src.commons.globals as glb
-import src.exp_domain.experiment_domain as exp_domain
+import style_NER.src.commons.globals as glb
+import style_NER.src.exp_domain.experiment_domain as exp_domain
 
 from types import SimpleNamespace as Namespace
 

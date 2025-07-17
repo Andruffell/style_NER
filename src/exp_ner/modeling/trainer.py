@@ -1,10 +1,10 @@
 import os
 import torch
-import src.commons.utilities as utils
+import style_NER.src.commons.utilities as utils
 
 from tqdm import tqdm, trange
 from transformers import AdamW, get_linear_schedule_with_warmup
-from src.exp_ner.evaluation.metric import *
+from style_NER.src.exp_ner.evaluation.metric import *
 
 
 def get_optimizer(args, model):

@@ -4,7 +4,7 @@ import time
 import math
 import torch
 import numpy as np
-import src.commons.utilities as utils
+import style_NER.src.commons.utilities as utils
 
 from tqdm import tqdm
 

@@ -2,13 +2,13 @@ import os
 import torch.optim as optim
 import torch.autograd as autograd
 
-from src.exp_domain.data.datasets import create_domain_dataset, create_dataloaders, encode_sentences, build_vocab
-from src.exp_domain.modeling.nets.embedding import TokenEmbedder
-from src.exp_domain.modeling.nets.encoders import LSTMEncoder
-from src.exp_domain.modeling.nets.decoders import LSTMDecoder, AttentionDecoder
-from src.exp_domain.modeling.nets.discriminators import LSTMDiscriminator, MLPDiscriminator
-from src.exp_domain.modeling.nets.models import ARModel, AdversarialARModel, CrossDomainARModel
-from src.exp_domain.modeling.trainer import train, evaluate, generate, load_checkpoint
+from style_NER.src.exp_domain.data.datasets import create_domain_dataset, create_dataloaders, encode_sentences, build_vocab
+from style_NER.src.exp_domain.modeling.nets.embedding import TokenEmbedder
+from style_NER.src.exp_domain.modeling.nets.encoders import LSTMEncoder
+from style_NER.src.exp_domain.modeling.nets.decoders import LSTMDecoder, AttentionDecoder
+from style_NER.src.exp_domain.modeling.nets.discriminators import LSTMDiscriminator, MLPDiscriminator
+from style_NER.src.exp_domain.modeling.nets.models import ARModel, AdversarialARModel, CrossDomainARModel
+from style_NER.src.exp_domain.modeling.trainer import train, evaluate, generate, load_checkpoint
 
 
 def choose_embedder(emb_args, src_vocab, tgt_vocab):

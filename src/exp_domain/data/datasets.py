@@ -1,7 +1,7 @@
 import os
 import copy
 import torch
-import src.commons.utilities as utils
+import style_NER.src.commons.utilities as utils
 
 from collections import Counter
 from torch.utils.data import Dataset, DataLoader, RandomSampler, SequentialSampler

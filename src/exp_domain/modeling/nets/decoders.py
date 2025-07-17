@@ -2,8 +2,8 @@ import random
 import torch
 import torch.nn as nn
 
-from src.exp_domain.modeling.nets.layers import LSTMLayer
-from src.exp_domain.modeling.nets.attention import BahdanauAttention
+from style_NER.src.exp_domain.modeling.nets.layers import LSTMLayer
+from style_NER.src.exp_domain.modeling.nets.attention import BahdanauAttention
 
 
 class LSTMDecoder(nn.Module):

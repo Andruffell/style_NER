@@ -4,9 +4,9 @@ import json
 import torch
 import argparse
 
-import src.commons.globals as glb
-import src.commons.utilities as utils
-import src.exp_ner.experiment_ner as exp_ner
+import style_NER.src.commons.globals as glb
+import style_NER.src.commons.utilities as utils
+import style_NER.src.exp_ner.experiment_ner as exp_ner
 
 
 class Arguments(dict):

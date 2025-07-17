@@ -3,13 +3,13 @@ import re
 import argparse
 import json
 import torch
-import src.exp_ner.data.datasets as ds
-import src.exp_ner.modeling.nets as nets
-import src.commons.utilities as utils
-import src.commons.globals as glb
+import style_NER.src.exp_ner.data.datasets as ds
+import style_NER.src.exp_ner.modeling.nets as nets
+import style_NER.src.commons.utilities as utils
+import style_NER.src.commons.globals as glb
 
 from transformers import BertTokenizer, BertConfig
-from src.exp_ner.modeling.trainer import *
+from style_NER.src.exp_ner.modeling.trainer import *
 
 
 def get_model_class(model_name):
