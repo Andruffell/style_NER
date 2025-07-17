@@ -1,6 +1,6 @@
 import os
 import torch
-import src.commons.utilities as utils
+import style_NER.src.commons.utilities as utils
 
 from typing import List, Dict
 from collections import Counter

@@ -3,7 +3,7 @@ import csv
 import json
 import torch
 import random
-import signal
+import platform
 import numpy as np
 
 from itertools import groupby
@@ -15,7 +15,7 @@ def read_conll(filename, columns, delimiter='\t'):
         return all(field.strip() == '' for field in line_pack)
 
     data = []
-    with open(filename) as fp:
+    with open(filename, encoding="utf-8") as fp:
         reader = csv.reader(fp, delimiter=delimiter, quoting=csv.QUOTE_NONE)
         groups = groupby(reader, is_empty_line)
 
@@ -37,7 +37,7 @@ def write_conll(filename, data, colnames: List[str] = None, delimiter='\t'):
 
     any_key = colnames[0]
 
-    with open(filename, 'w') as fp:
+    with open(filename, 'w', encoding="utf-8") as fp:
         for sample_i in range(len(data[any_key])):
             for token_i in range(len(data[any_key][sample_i])):
                 row = [data[col][sample_i][token_i] for col in colnames]
@@ -67,19 +67,27 @@ def flatten(nested_elems):
 
 
 def input_with_timeout(prompt, timeout, default=''):
-    def alarm_handler(signum, frame):
-        raise Exception("Time is up!")
-    try:
-        # set signal handler
-        signal.signal(signal.SIGALRM, alarm_handler)
-        signal.alarm(timeout)  # produce SIGALRM in `timeout` seconds
+    if platform.system() == "Windows":
+        print(f"{prompt} (Timeout not active on Windows, default: {default})")
+        try:
+            return input() or default
+        except:
+            return default
+    else:
+        import signal
 
-        return input(prompt)
-    except Exception as ex:
-        return default
-    finally:
-        signal.alarm(0)  # cancel alarm
+        def timeout_handler(signum, frame):
+            raise TimeoutError
 
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(timeout)
+        try:
+            answer = input(prompt)
+            signal.alarm(0)
+            return answer or default
+        except TimeoutError:
+            print(f"\nTimeout: using default '{default}'")
+            return default
 
 def load_from_json(filepath, json_by_line=False):
     with open(filepath, 'r') as fp:
