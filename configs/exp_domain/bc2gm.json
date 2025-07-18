@@ -1,17 +1,17 @@
 {
-    "experiment_id": "cdar1.0-nw-sm",
+    "experiment_id": "jnlpba-bc2gm",
     "experiment_type": "domain",
     "description": "input:word | encoder:lstm | decoder:lstm | discr: mlp | output:embedding",
     "datasets": {
         "source":{
-            "train": "linearized_domain/nw/train.json",
-            "dev": "linearized_domain/nw/dev.json",
-            "test": "linearized_domain/nw/test.json"
+            "train": "linearized_domain/jnlpba/train.json",
+            "dev": "linearized_domain/jnlpba/dev.json",
+            "test": "linearized_domain/jnlpba/test.json"
         },
         "target":{
-            "train": "linearized_domain/sm/train.json",
-            "dev": "linearized_domain/sm/dev.json",
-            "test": "linearized_domain/sm/test.json"
+            "train": "linearized_domain/bc2gm/train.json",
+            "dev": "linearized_domain/bc2gm/dev.json",
+            "test": "linearized_domain/bc2gm/test.json"
         }
     },
     "model": {
