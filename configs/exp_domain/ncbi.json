@@ -1,14 +1,14 @@
 {
-    "experiment_id": "bc5cdrD-ncbi",
+    "experiment_id": "bc5cdr_disease-ncbi",
     "experiment_type": "domain",
     "description": "input:word | encoder:lstm | decoder:lstm | discr: mlp | output:embedding",
     "datasets": {
-        "source":{
-            "train": "linearized_domain/bc5cdrD/train.json",
-            "dev": "linearized_domain/bc5cdrD/dev.json",
-            "test": "linearized_domain/bc5cdrD/test.json"
+        "source": {
+            "train": "linearized_domain/bc5cdr_disease/train.json",
+            "dev": "linearized_domain/bc5cdr_disease/dev.json",
+            "test": "linearized_domain/bc5cdr_disease/test.json"
         },
-        "target":{
+        "target": {
             "train": "linearized_domain/ncbi/train.json",
             "dev": "linearized_domain/ncbi/dev.json",
             "test": "linearized_domain/ncbi/test.json"
@@ -21,7 +21,7 @@
             "embedding_dim": 512,
             "src_vocab_size": 10000,
             "tgt_vocab_size": 10000,
-            "noise":{
+            "noise": {
                 "shuffle_param": 0,
                 "dropout_param": 0.1,
                 "masking_param": 0
@@ -52,25 +52,25 @@
             "smooth_labels": null,
             "dropout": 0.5
         },
-        "lambda_coef":{
+        "lambda_coef": {
             "lambda_auto": 1.0,
             "lambda_adv": 10.0,
             "lambda_cross": 1.0
         }
     },
     "training": {
-        "epochs": 50,
+        "epochs": 5,
         "per_gpu_train_batch_size": 8,
         "optimizer": {
             "generator": {
                 "name": "adam",
-                "lr": 5e-4,
+                "lr": 0.0005,
                 "beta_1": 0.5,
                 "beta_2": 0.999
             },
             "discriminator": {
                 "name": "rmsprop",
-                "lr": 5e-4
+                "lr": 0.0005
             }
         },
         "l2": 0.0,

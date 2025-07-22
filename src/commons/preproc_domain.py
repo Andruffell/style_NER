@@ -1,7 +1,8 @@
 import os
-import src.commons.utilities as utils
-import src.commons.globals as glb
-
+import sys
+import style_NER.src.commons.utilities as utils
+import style_NER.src.commons.globals as glb
+import argparse
 
 def ner2domain(corpus_dir, save_dir, colnames, datasets=['train.txt', 'dev.txt', 'test.txt']):
     """
@@ -72,7 +73,7 @@ def unlinearize_sentence(sentence):
 
     is_entity = False
     for token in sentence:
-        if token.startswith('B-') or token.startswith('I-'):
+        if token.startswith('B') or token.startswith('I'):
             labels.append(token)
             is_entity = True
         else:
@@ -130,10 +131,18 @@ def save_ner(data_path, save_path, data_colnames, save_colnames):
 
     utils.write_conll(save_path, save_data)
 
+def parse_args(argv):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input_dir', type=str)
+    parser.add_argument('--output_file', type=str)
+
+    args = parser.parse_args(argv)
+    return args
 
 if __name__ == '__main__':
-    corpus_dir = 'ner/sm'
-    save_dir = 'linearized_domain/sm'
+    args = parse_args(sys.argv[1:])
+    corpus_dir = args.input_dir
+    save_dir = args.output_file
     colnames = {'tokens': 0, 'labels': 1}
     
     ner2domain(corpus_dir, save_dir, colnames)

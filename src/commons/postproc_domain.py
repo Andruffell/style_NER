@@ -10,12 +10,12 @@ def is_clean_tag(tag_list):
     for tag in tag_list:
         if tag != "O":
             found = True
-        pos, lab = tag[:2], tag[2:]
-        if pos not in {"B-", "I-", "O"}:
+        pos, lab = tag[:1], tag[1:]
+        if pos not in {"B", "I", "O"}:
             return False
 
         if prev_lab is not None:
-            if pos in {"I-"} and lab != prev_lab:  # type conflict
+            if pos in {"I"} and lab != prev_lab:  # type conflict
                 return False
         prev_pos, prev_lab = pos, lab
     if prev_pos not in {"O"}:  # not end well
@@ -30,7 +30,7 @@ def is_clean_tok(tok_list):
     for tok in tok_list:
         if tok != "<unk>":
             found = True
-        if tok[:2] in {"B-", "I-"}:
+        if tok[:1] in {"B", "I"} and len(tok) < 2:
             return False
     if not found:
         return False
@@ -45,12 +45,12 @@ def convert(fout, data, ignore_cat_label):
         for i in range(len(tokens)):
             tok = tokens[i]
             tag = "O"
-            if tok[:2] in {"B-", "I-"}:
+            if tok[:1] in {"B", "I"} and len(tok) < 2:
                 continue
             prev_tok = ""
             if 0 < i < len(tokens):
                 prev_tok = tokens[i - 1]
-            if prev_tok[:2] in {"B-", "I-"}:
+            if prev_tok[:1] in {"B", "I"} and len(prev_tok) < 2:
                 tag = prev_tok
             tok_list.append(tok)
             tag_list.append(tag)

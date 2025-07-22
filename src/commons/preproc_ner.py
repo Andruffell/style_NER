@@ -1,7 +1,7 @@
 import os
 import json
-import src.commons.utilities as utils
-import src.commons.globals as glb
+import style_NER.src.commons.utilities as utils
+import style_NER.src.commons.globals as glb
 
 
 def process_json(corpus_dir, save_dir, data_colnames, save_colnames):
@@ -78,7 +78,7 @@ def process_labels(corpus_dir, save_dir, data_colnames, save_colnames):
     save_colnames: List[str]
     """
 
-    NER_LABELS = {'B-person': 'B-PER', 'I-person': 'I-PER', 'B-geo-loc': 'B-LOC', 'I-geo-loc': 'I-LOC', 'B-company': 'B-ORG', 'I-company': 'I-ORG'}
+    NER_LABELS = {'B': 'B', 'I': 'I'}
 
     corpus_dir = os.path.join(glb.DATA_DIR, corpus_dir)
     save_dir = os.path.join(glb.DATA_DIR, save_dir)
@@ -101,8 +101,8 @@ def process_labels(corpus_dir, save_dir, data_colnames, save_colnames):
 
 
 if __name__ == '__main__':
-    corpus_dir = 'ner/sm'
-    save_dir = 'ner/sm/new/'
+    corpus_dir = 'ner/bc5cdr_disease'
+    save_dir = 'ner/ncbi/new/'
     data_colnames = {'tokens': 0, 'labels': 1}
     save_colnames = {'tokens': 0, 'labels': 1}
     

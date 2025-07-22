@@ -190,15 +190,8 @@ def main(args):
         evaluate(model, tgt_dataloaders, 'tgt', args)
 
     elif args.mode == 'generate':
-        generate(model, src_dataloaders, src_domain='src', tgt_domain='src', max_len=50, temperature=1, algorithm='greedy', args=args)
         generate(model, src_dataloaders, src_domain='src', tgt_domain='tgt', max_len=50, temperature=1, algorithm='greedy', args=args)
-        generate(model, tgt_dataloaders, src_domain='tgt', tgt_domain='tgt', max_len=50, temperature=1, algorithm='greedy', args=args)
-        generate(model, tgt_dataloaders, src_domain='tgt', tgt_domain='src', max_len=50, temperature=1, algorithm='greedy', args=args)
-
-        generate(model, src_dataloaders, src_domain='src', tgt_domain='src', max_len=50, temperature=1, algorithm='top5', args=args)
         generate(model, src_dataloaders, src_domain='src', tgt_domain='tgt', max_len=50, temperature=1, algorithm='top5', args=args)
-        generate(model, tgt_dataloaders, src_domain='tgt', tgt_domain='tgt', max_len=50, temperature=1, algorithm='top5', args=args)
-        generate(model, tgt_dataloaders, src_domain='tgt', tgt_domain='src', max_len=50, temperature=1, algorithm='top5', args=args)
 
     elif args.mode == 'debug':
         with autograd.detect_anomaly():
